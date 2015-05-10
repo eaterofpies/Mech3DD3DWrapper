@@ -85,13 +85,6 @@ HRESULT WINAPI DirectDrawCreate(GUID *driver_guid, IDirectDraw **ddraw, IUnknown
         return rc;
     }
     LPDIRECTDRAW lpdd = *ddraw;
-    LPDIRECTDRAW7 lpdd7;
-    rc = IDirectDraw_QueryInterface(lpdd, &IID_IDirectDraw7, (void**)(&lpdd7));
-    if(rc != DD_OK)
-    {
-        MessageBox(0, "expected ddraw7 but it wasnt :(", APP_NAME, MB_ICONERROR);
-        abort();
-    }
 
 	if(logfd == 0)
 	{
@@ -100,7 +93,7 @@ HRESULT WINAPI DirectDrawCreate(GUID *driver_guid, IDirectDraw **ddraw, IUnknown
 	}
 
 	//swap the real ddraw object for a proxy
-    IDDInit(ddraw);
+    (*ddraw) = IDDCreate(lpdd);
 
     DPRINTF("%s", "Hooks installed\n");
 

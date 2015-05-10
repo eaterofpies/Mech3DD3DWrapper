@@ -2,7 +2,8 @@
 #define __H_DIRECTDRAW2
 
 #include "Util.h"
+#include "Unknown.h"
 
-void IDD2Init(IDirectDraw2**);
+IDirectDraw2* IDD2Query(IUNK* unk);
 
 #endif

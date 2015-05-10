@@ -188,7 +188,7 @@ HRESULT STDMETHODCALLTYPE DDS4GetAttachedSurface(DDS4 *This, DDSCAPS2 *caps, DDS
 {
 	DPRINTF("caps = %x, caps2 = %x", caps->dwCaps, caps->dwCaps2);
 	HRESULT rc = This->real->lpVtbl->GetAttachedSurface(This->real, caps, attachment);
-	IDDS4Init(attachment);
+	(*attachment) = IDDS4Create(*attachment);
 	return rc;
 }
 
@@ -274,14 +274,29 @@ IDirectDrawSurface4Vtbl dds4Vtbl =
 	DDS4ChangeUniquenessValue,
 };
 
-//Initialise ddraw structure
-void IDDS4Init(IDirectDrawSurface4** dd)
+IDirectDrawSurface4* IDDS4Create(IDirectDrawSurface4* real)
 {
-	DPRINTF("trace");
-
-	//TODO currently not freed
     DDS4* fake = malloc(sizeof(DDS4));
 	fake->lpVtbl = &dds4Vtbl;
-    fake->real = *dd;
-    *dd = fake;
+    fake->real = real;
+    return fake;
 }
+
+IDirectDrawSurface4* IDDS4Query(IUNK* unk)
+{
+	IDirectDrawSurface4* real;
+	//get the real pointer
+	if(unk->real->lpVtbl->QueryInterface(unk->real, &IID_IDirectDrawSurface4, &real) != DD_OK)
+	{
+		DPRINTF("query interface failed with %d",DD_OK);
+		ABORT();
+	}
+
+	DPRINTF("trace");
+
+    DDS4* fake = malloc(sizeof(DDS4));
+	fake->lpVtbl = &dds4Vtbl;
+    fake->real = real;
+    return fake;
+}
+

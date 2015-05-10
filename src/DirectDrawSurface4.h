@@ -2,6 +2,7 @@
 #define __H_DIRECTDRAWSURFACE4
 
 #include "Util.h"
+#include "Unknown.h"
 
 typedef struct DDS4
 {
@@ -9,6 +10,7 @@ typedef struct DDS4
     IDirectDrawSurface4* real;
 } DDS4;
 
-void IDDS4Init(IDirectDrawSurface4**);
+IDirectDrawSurface4* IDDS4Create(IDirectDrawSurface4* real);
+IDirectDrawSurface4* IDDS4Query(IUNK* unk);
 
 #endif

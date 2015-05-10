@@ -3,6 +3,6 @@
 
 #include "Util.h"
 
-void IDDInit(IDirectDraw**);
+IDirectDraw* IDDCreate(IDirectDraw* real);
 
 #endif

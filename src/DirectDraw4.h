@@ -2,7 +2,8 @@
 #define __H_DIRECTDRAW4
 
 #include "Util.h"
+#include "Unknown.h"
 
-void IDD4Init(IDirectDraw4**);
+IDirectDraw4* IDD4Query(IUNK* unk);
 
 #endif

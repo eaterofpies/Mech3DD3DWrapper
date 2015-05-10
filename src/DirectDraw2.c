@@ -76,15 +76,20 @@ IDirectDraw2Vtbl dd2Vtbl =
 	DD2GetAvailableVidMem
 };
 
-//Initialise ddraw structure
-void IDD2Init(IDirectDraw2** dd)
+IDirectDraw2* IDD2Query(IUNK* unk)
 {
+	IDirectDraw2* real;
+	//get the real pointer
+	if(unk->real->lpVtbl->QueryInterface(unk->real, &IID_IDirectDraw2, &real) != DD_OK)
+	{
+		DPRINTF("query interface failed with %d");
+		ABORT();
+	}
+
 	DPRINTF("trace");
 
-	//TODO currently not freed
-    DD2* fakeDD2 = malloc(sizeof(DD2));
-	fakeDD2->lpVtbl = &dd2Vtbl;
-    fakeDD2->real = *dd;
-
-    *dd = fakeDD2;
+    DD2* fake = malloc(sizeof(DD2));
+	fake->lpVtbl = &dd2Vtbl;
+    fake->real = real;
+    return fake;
 }

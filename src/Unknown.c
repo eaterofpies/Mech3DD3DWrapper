@@ -7,42 +7,35 @@
 
 
 //functions actually used in the game
-HRESULT STDMETHODCALLTYPE IUNKQueryInterface(IUNK* dd, const IID* const riid, void** ppvObject)
+HRESULT STDMETHODCALLTYPE IUNKQueryInterface(IUNK* unk, const IID* const riid, void** ppvObject)
 {
     DPRINTF("trace\nriid = %x", *riid);
-
-	//get the real pointer
-	if(dd->real->lpVtbl->QueryInterface(dd->real, riid, ppvObject) != DD_OK)
-	{
-		DPRINTF("query interface failed with %d",DD_OK);
-		ABORT();
-	}
 
     if(IsEqualIID(riid, &IID_IDirectDraw2))
     {
         DPRINTF("Requested IDirectDraw2",DD_OK);
-        IDD2Init((IDirectDraw2**)ppvObject);
+        (*ppvObject) = IDD2Query(unk);
         return DD_OK;
     }
 
     if(IsEqualIID(riid, &IID_IDirectDraw4))
     {
-        DPRINTF("Requested IDirectDraw4",DD_OK);
-        IDD4Init((IDirectDraw4**)ppvObject);
+        DPRINTF("Requested IDirectDraw4");
+        (*ppvObject) = IDD4Query(unk);
         return DD_OK;
 	}
 
 	if(IsEqualIID(riid, &IID_IDirect3D3))
 	{
         DPRINTF("Requested IDirect3D3",DD_OK);
-	    ID3D3Init((IDirect3D3**)ppvObject);
+        (*ppvObject) = ID3D3Query(unk);
         return DD_OK;
 	}
 
 	if(IsEqualIID(riid, &IID_IDirectDrawSurface4))
 	{
         DPRINTF("Requested IDirectDrawSurface4",DD_OK);
-	    IDDS4Init((IDirectDrawSurface4**)ppvObject);
+        (*ppvObject) = IDDS4Query(unk);
         return DD_OK;
 	}
 
@@ -50,14 +43,13 @@ HRESULT STDMETHODCALLTYPE IUNKQueryInterface(IUNK* dd, const IID* const riid, vo
 	if(IsEqualIID(riid, &IID_IDirect3DTexture2))
 	{
         DPRINTF("Requested IDirect3DTexture2",DD_OK);
-	    //Just give it the real interface for now
-	    return DD_OK;
+		//Just give it the real interface for now
+		return unk->real->lpVtbl->QueryInterface(unk->real, riid, ppvObject);
 	}
 
 
 	DPRINTF("refiid: %x unsupported API not hooked\n", *riid);
     ABORT();
-    return dd->real->lpVtbl->QueryInterface(dd->real, riid, ppvObject);
 }
 
 
@@ -77,6 +69,5 @@ ULONG STDMETHODCALLTYPE IUNKRelease(IUNK* dd)
 ULONG STDMETHODCALLTYPE IUNKAddRef(IUNK* dd)
 {
     DPRINTF("trace");
-    //TODO delete allocated space on release
     return dd->real->lpVtbl->AddRef(dd->real);
 }

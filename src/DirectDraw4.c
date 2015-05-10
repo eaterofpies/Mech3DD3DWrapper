@@ -118,7 +118,7 @@ HRESULT STDMETHODCALLTYPE DD4CreateSurface(DD4* dd, DDSURFACEDESC2 *surface_desc
 	}
 
 
-    IDDS4Init(surface);
+    (*surface) = IDDS4Create(*surface);
     return rc;
 }
 
@@ -212,14 +212,20 @@ IDirectDraw4Vtbl dd4Vtbl =
 	DD4GetDeviceIdentifier
 };
 
-//Initialise ddraw structure
-void IDD4Init(IDirectDraw4** dd)
+IDirectDraw4* IDD4Query(IUNK* unk)
 {
+	IDirectDraw4* real;
+	//get the real pointer
+	if(unk->real->lpVtbl->QueryInterface(unk->real, &IID_IDirectDraw4, &real) != DD_OK)
+	{
+		DPRINTF("query interface failed with %d",DD_OK);
+		ABORT();
+	}
+
 	DPRINTF("trace");
 
-	//TODO currently not freed
     DD4* fakeDD4 = malloc(sizeof(DD4));
 	fakeDD4->lpVtbl = &dd4Vtbl;
-    fakeDD4->real = *dd;
-    *dd = fakeDD4;
+    fakeDD4->real = real;
+    return fakeDD4;
 }

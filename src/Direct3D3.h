@@ -2,6 +2,8 @@
 #define __H_DIRECT3D3
 
 #include "Util.h"
+#include "Unknown.h"
 
-void ID3D3Init(IDirect3D3**);
+IDirect3D3* ID3D3Query(IUNK* unk);
+
 #endif

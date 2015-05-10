@@ -217,6 +217,8 @@ HRESULT STDMETHODCALLTYPE D3D3EvictManagedTextures(D3D3* dd)
     return dd->real->lpVtbl->EvictManagedTextures(dd->real);
 }
 
+
+
 IDirect3D3Vtbl d3d3Vtbl =
 {
 	D3D3QueryInterface,
@@ -233,16 +235,22 @@ IDirect3D3Vtbl d3d3Vtbl =
     D3D3EvictManagedTextures
 };
 
-//Initialise ddraw structure
-void ID3D3Init(IDirect3D3** dd)
+
+IDirect3D3* ID3D3Query(IUNK* unk)
 {
+	IDirect3D3* real;
+	//get the real pointer
+	if(unk->real->lpVtbl->QueryInterface(unk->real, &IID_IDirect3D3, &real) != DD_OK)
+	{
+		DPRINTF("query interface failed with %d",DD_OK);
+		ABORT();
+	}
+
 	DPRINTF("trace");
 
-	//TODO currently not freed
     D3D3* fake = malloc(sizeof(D3D3));
 	fake->lpVtbl = &d3d3Vtbl;
-    fake->real = *dd;
-
-    *dd = fake;
+    fake->real = real;
+    return fake;
 }
 

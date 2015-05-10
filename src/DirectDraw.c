@@ -128,17 +128,13 @@ IDirectDrawVtbl dd1Vtbl =
 	DD1WaitForVerticalBlank
 };
 
-//Initialise ddraw structure
-void IDDInit(IDirectDraw** dd)
+IDirectDraw* IDDCreate(IDirectDraw* real)
 {
 	DPRINTF("trace");
 
-    //setup pointers to vtables and pointers to objects
-    //should make code easier to read
-    //TODO should delete these on release of last obj
-	DD1* fakeDD1 = malloc(sizeof(DD1));
-	fakeDD1->lpVtbl = &dd1Vtbl;
-    fakeDD1->real = *dd;
-
-    *dd = fakeDD1;
+    DD1* fake = malloc(sizeof(DD1));
+	fake->lpVtbl = &dd1Vtbl;
+    fake->real = real;
+    return fake;
 }
+
