@@ -107,17 +107,6 @@ HRESULT STDMETHODCALLTYPE DD4CreateSurface(DD4* dd, DDSURFACEDESC2 *surface_desc
 		ABORT();
 	}
 
-	IDirectDrawSurface4 *blank = NULL;
-    if(surface_desc->ddpfPixelFormat.dwFlags & DDPF_ZBUFFER)
-    {
-		rc = dd->real->lpVtbl->CreateSurface(dd->real, surface_desc, &blank, outer);
-		if(rc != DD_OK)
-		{
-			ABORT();
-		}
-	}
-
-
     (*surface) = IDDS4Create(*surface);
     return rc;
 }

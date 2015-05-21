@@ -103,8 +103,6 @@ STDDDSTUB(D3DD3, GetTextureStageState, D3DD3 *This, DWORD dwStage,D3DTEXTURESTAG
 //STDDDSTUB(D3DD3, SetTextureStageState, D3DD3 *This, DWORD dwStage,D3DTEXTURESTAGESTATETYPE d3dTexStageStateType,DWORD dwState) ;
 STDDDSTUB(D3DD3, ValidateDevice, D3DD3 *This, LPDWORD lpdwPasses) ;
 
-D3DV3* currentViewport;
-
 ULONG STDMETHODCALLTYPE D3DD3Release(D3DD3* This)
 {
     DPRINTF("trace");
@@ -144,13 +142,18 @@ HRESULT STDMETHODCALLTYPE D3DD3EndScene(D3DD3 *This)
 HRESULT STDMETHODCALLTYPE D3DD3SetCurrentViewport(D3DD3 *This, D3DV3 *viewport)
 {
 	DPRINTF("trace");
-	currentViewport = viewport;
 	return This->real->lpVtbl->SetCurrentViewport(This->real, viewport->real);
 }
 
 HRESULT STDMETHODCALLTYPE D3DD3SetRenderState(D3DD3 *This, D3DRENDERSTATETYPE dwRenderStateType, DWORD dwRenderState)
 {
-	DPRINTF("trace");
+	PrintRenderstate(dwRenderStateType, dwRenderState);
+#if 0
+	if (dwRenderStateType == D3DRENDERSTATE_FOGENABLE)
+	{
+		dwRenderState = 0;
+	}
+#endif
 	return This->real->lpVtbl->SetRenderState(This->real, dwRenderStateType, dwRenderState);
 }
 
@@ -254,8 +257,6 @@ IDirect3DDevice3Vtbl d3dd3Vtbl =
 	D3DD3ValidateDevice
 };
 
-D3DD3* currentDevice;
-
 //Initialise ddraw structure
 void ID3DD3Init(IDirect3DDevice3** dd)
 {
@@ -264,7 +265,6 @@ void ID3DD3Init(IDirect3DDevice3** dd)
     D3DD3* fake = malloc(sizeof(D3DD3));
 	fake->lpVtbl = &d3dd3Vtbl;
     fake->real = *dd;
-	currentDevice = fake;
     *dd = fake;
 }
 

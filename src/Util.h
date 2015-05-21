@@ -5,7 +5,6 @@
 #include <d3d.h>
 #include <stdio.h>
 extern FILE* logfd;
-
 //Debug macros
 #define DPRINTF(args...) \
 do \
@@ -36,4 +35,8 @@ do {DPRINTF("---------------aborting"); int* i = 0; memset(i,1,1000); abort(); }
 #define STDDDSTUB(iface, name, args...) \
 DDSTUB(HRESULT, iface, name, args);
 
+void PrintSurfaceDesc(DDSURFACEDESC* desc);
+void PrintHresult(HRESULT h);
+void PrintRenderstate(D3DRENDERSTATETYPE rs, DWORD val);
+void PrintRect(RECT* r);
 #endif

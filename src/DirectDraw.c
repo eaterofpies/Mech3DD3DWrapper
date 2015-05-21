@@ -97,7 +97,15 @@ HRESULT STDMETHODCALLTYPE DD1SetCooperativeLevel(DD1* dd, HWND hWnd, DWORD dwFla
 HRESULT STDMETHODCALLTYPE DD1CreateSurface(DD1* dd, DDSURFACEDESC *surface_desc, struct IDirectDrawSurface **surface, IUnknown *outer)
 {
     DPRINTF("trace");
-    return dd->real->lpVtbl->CreateSurface(dd->real, surface_desc, surface, outer);
+    PrintSurfaceDesc(surface_desc);
+    HRESULT rc = dd->real->lpVtbl->CreateSurface(dd->real, surface_desc, surface, outer);
+	if(rc != DD_OK)
+	{
+		ABORT();
+	}
+
+    (*surface) = IDDS1Create(*surface);
+    return rc;
 }
 
 // create vtables for the interfaces

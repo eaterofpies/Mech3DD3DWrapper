@@ -60,7 +60,7 @@ HRESULT STDMETHODCALLTYPE D3DV3SetBackground(D3DV3 *This, D3DMATERIALHANDLE hMat
 
 HRESULT STDMETHODCALLTYPE D3DV3SetViewport2(D3DV3 *This, D3DVIEWPORT2 *data)
 {
-	DPRINTF("trace");
+	DPRINTF("minZ %f\nmaxZ %f", data->dvMinZ, data->dvMaxZ);
 	return This->real->lpVtbl->SetViewport2(This->real, data);
 }
 

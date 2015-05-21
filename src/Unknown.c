@@ -2,6 +2,7 @@
 #include "DirectDraw.h"
 #include "DirectDraw2.h"
 #include "DirectDraw4.h"
+#include "DirectDrawSurface3.h"
 #include "Direct3D3.h"
 #include "Unknown.h"
 
@@ -9,7 +10,7 @@
 //functions actually used in the game
 HRESULT STDMETHODCALLTYPE IUNKQueryInterface(IUNK* unk, const IID* const riid, void** ppvObject)
 {
-    DPRINTF("trace\nriid = %x", *riid);
+    DPRINTF("trace\nthis %x\nriid = %x", unk, *riid);
 
     if(IsEqualIID(riid, &IID_IDirectDraw2))
     {
@@ -40,6 +41,14 @@ HRESULT STDMETHODCALLTYPE IUNKQueryInterface(IUNK* unk, const IID* const riid, v
 	}
 
 	//DDraw surfaces can be converted into textures
+	if(IsEqualIID(riid, &IID_IDirectDrawSurface3))
+	{
+        DPRINTF("Requested IDirectDrawSurface3",DD_OK);
+		//Just give it the real interface for now
+		return IDDS3Query(unk);
+	}
+
+	//DDraw surfaces can be converted into textures
 	if(IsEqualIID(riid, &IID_IDirect3DTexture2))
 	{
         DPRINTF("Requested IDirect3DTexture2",DD_OK);
@@ -55,7 +64,7 @@ HRESULT STDMETHODCALLTYPE IUNKQueryInterface(IUNK* unk, const IID* const riid, v
 
 ULONG STDMETHODCALLTYPE IUNKRelease(IUNK* dd)
 {
-    DPRINTF("trace");
+    DPRINTF("trace\nthis %x", dd);
     ULONG count = dd->real->lpVtbl->Release(dd->real);
 
 	if (count == 0)

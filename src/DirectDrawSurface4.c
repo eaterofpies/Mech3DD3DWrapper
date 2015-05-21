@@ -112,20 +112,20 @@ STDDDSTUB(DDS4, ChangeUniquenessValue, DDS4 *This) ;
 
 HRESULT STDMETHODCALLTYPE DDS4QueryInterface(DDS4* This, REFIID riid, void** ppvObject)
 {
-    DPRINTF("trace");
+	DPRINTF("trace %x", This);
     return IUNKQueryInterface(This, riid, ppvObject);
 }
 
 ULONG STDMETHODCALLTYPE DDS4Release(DDS4* This)
 {
-    DPRINTF("trace");
+	DPRINTF("trace %x", This);
     return IUNKRelease(This);
 }
 
 //Used to attach zbuffer?!?
 HRESULT STDMETHODCALLTYPE DDS4AddAttachedSurface(DDS4 *This, DDS4 *attachment)
 {
-	DPRINTF("trace");
+	DPRINTF("trace %x", This);
 	return This->real->lpVtbl->AddAttachedSurface(This->real, attachment->real);
 }
 
@@ -149,21 +149,18 @@ HRESULT STDMETHODCALLTYPE DDS4Blt(DDS4 *This, RECT *dst_rect, DDS4 *src_surface,
 
 	if(flags & DDBLT_DEPTHFILL)
 	{
+		DPRINTF("trace %x\ndrect %x\nssurf %x\nsrect %x\nflags %x",
+			This, dst_rect, src_surface, src_rect, flags);
 
-		DPRINTF("trace %x", This);
+		if(dst_rect != NULL)
+		{
+			PrintRect(dst_rect);
+		}
 
-		DPRINTF("flags %x\n", flags);
 		if(fx != NULL)
 		{
 			DPRINTF("zDepth = %x", fx->dwFillDepth);
 		}
-		/*HRESULT rc;
-		rc = currentViewport->real->lpVtbl->Clear2(currentViewport->real,0,NULL,D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, 0,1.0f, 0);
-		if (rc != D3D_OK)
-		{
-			ABORT();
-		}
-		return DD_OK;*/
 	}
 
 
@@ -174,7 +171,6 @@ HRESULT STDMETHODCALLTYPE DDS4Flip(DDS4 *This, DDS4 *dst_surface, DWORD flags)
 {
 	DPRINTF("trace %x", This);
 
-	//NULL src passed in to clear?
 	IDirectDrawSurface4* dst = NULL;
 	if(dst_surface != NULL)
 	{
@@ -186,6 +182,7 @@ HRESULT STDMETHODCALLTYPE DDS4Flip(DDS4 *This, DDS4 *dst_surface, DWORD flags)
 
 HRESULT STDMETHODCALLTYPE DDS4GetAttachedSurface(DDS4 *This, DDSCAPS2 *caps, DDS4 **attachment)
 {
+	DPRINTF("trace %x", This);
 	DPRINTF("caps = %x, caps2 = %x", caps->dwCaps, caps->dwCaps2);
 	HRESULT rc = This->real->lpVtbl->GetAttachedSurface(This->real, caps, attachment);
 	(*attachment) = IDDS4Create(*attachment);
@@ -201,25 +198,25 @@ HRESULT STDMETHODCALLTYPE DDS4GetPixelFormat(DDS4 *This, DDPIXELFORMAT *format)
 
 HRESULT STDMETHODCALLTYPE DDS4Lock(DDS4 *This, RECT *rect, DDSURFACEDESC2 *surface_desc, DWORD flags, HANDLE event)
 {
-	DPRINTF("trace");
+	DPRINTF("trace %x", This);
 	return This->real->lpVtbl->Lock(This->real, rect, surface_desc, flags, event);
 }
 
 HRESULT STDMETHODCALLTYPE DDS4Restore(DDS4 *This)
 {
-	DPRINTF("trace");
+	DPRINTF("trace %x", This);
 	return This->real->lpVtbl->Restore(This->real);
 }
 
 HRESULT STDMETHODCALLTYPE DDS4SetClipper(DDS4 *This, IDirectDrawClipper *clipper)
 {
-	DPRINTF("trace");
+	DPRINTF("trace %x", This);
 	return This->real->lpVtbl->SetClipper(This->real, clipper);
 }
 
 HRESULT STDMETHODCALLTYPE DDS4Unlock(DDS4 *This, LPRECT lpSurfaceData)
 {
-	DPRINTF("trace");
+	DPRINTF("trace %x", This);
 	return This->real->lpVtbl->Unlock(This->real, lpSurfaceData);
 }
 
@@ -279,6 +276,7 @@ IDirectDrawSurface4* IDDS4Create(IDirectDrawSurface4* real)
     DDS4* fake = malloc(sizeof(DDS4));
 	fake->lpVtbl = &dds4Vtbl;
     fake->real = real;
+	DPRINTF("fake %x", fake);
     return fake;
 }
 
@@ -292,11 +290,11 @@ IDirectDrawSurface4* IDDS4Query(IUNK* unk)
 		ABORT();
 	}
 
-	DPRINTF("trace");
 
     DDS4* fake = malloc(sizeof(DDS4));
 	fake->lpVtbl = &dds4Vtbl;
     fake->real = real;
+	DPRINTF("trace %x", fake);
     return fake;
 }
 
