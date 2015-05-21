@@ -10,7 +10,7 @@ STDDDTYPEDEF(D3DD3, GetStats, D3DD3 *This, D3DSTATS *stats) ;
 STDDDTYPEDEF(D3DD3, AddViewport, D3DD3 *This, D3DV3 *viewport) ;
 STDDDTYPEDEF(D3DD3, DeleteViewport, D3DD3 *This, D3DV3 *viewport) ;
 STDDDTYPEDEF(D3DD3, NextViewport, D3DD3 *This, D3DV3 *ref,
-		D3DV3 **viewport, DWORD flags) ;
+        D3DV3 **viewport, DWORD flags) ;
 STDDDTYPEDEF(D3DD3, EnumTextureFormats, D3DD3 *This, LPD3DENUMPIXELFORMATSCALLBACK lpD3DEnumPixelProc, LPVOID lpArg) ;
 STDDDTYPEDEF(D3DD3, BeginScene, D3DD3 *This) ;
 STDDDTYPEDEF(D3DD3, EndScene, D3DD3 *This) ;
@@ -36,16 +36,16 @@ STDDDTYPEDEF(D3DD3, DrawIndexedPrimitive, D3DD3 *This, D3DPRIMITIVETYPE d3dptPri
 STDDDTYPEDEF(D3DD3, SetClipStatus, D3DD3 *This, D3DCLIPSTATUS *clip_status) ;
 STDDDTYPEDEF(D3DD3, GetClipStatus, D3DD3 *This, D3DCLIPSTATUS *clip_status) ;
 STDDDTYPEDEF(D3DD3, DrawPrimitiveStrided, D3DD3 *This, D3DPRIMITIVETYPE primitive_type, DWORD fvf,
-		D3DDRAWPRIMITIVESTRIDEDDATA *strided_data, DWORD vertex_count, DWORD flags) ;
+        D3DDRAWPRIMITIVESTRIDEDDATA *strided_data, DWORD vertex_count, DWORD flags) ;
 STDDDTYPEDEF(D3DD3, DrawIndexedPrimitiveStrided, D3DD3 *This, D3DPRIMITIVETYPE primitive_type, DWORD fvf,
-		D3DDRAWPRIMITIVESTRIDEDDATA *strided_data, DWORD vertex_count, WORD *indices, DWORD index_count,
-		DWORD flags) ;
+        D3DDRAWPRIMITIVESTRIDEDDATA *strided_data, DWORD vertex_count, WORD *indices, DWORD index_count,
+        DWORD flags) ;
 STDDDTYPEDEF(D3DD3, DrawPrimitiveVB, D3DD3 *This, D3DPRIMITIVETYPE primitive_type, struct IDirect3DVertexBuffer *vb,
-		DWORD start_vertex, DWORD vertex_count, DWORD flags) ;
+        DWORD start_vertex, DWORD vertex_count, DWORD flags) ;
 STDDDTYPEDEF(D3DD3, DrawIndexedPrimitiveVB, D3DD3 *This, D3DPRIMITIVETYPE primitive_type, struct IDirect3DVertexBuffer *vb,
-		WORD *indices, DWORD index_count, DWORD flags) ;
+        WORD *indices, DWORD index_count, DWORD flags) ;
 STDDDTYPEDEF(D3DD3, ComputeSphereVisibility, D3DD3 *This, D3DVECTOR *centers, D3DVALUE *radii, DWORD sphere_count,
-		DWORD flags, DWORD *ret) ;
+        DWORD flags, DWORD *ret) ;
 STDDDTYPEDEF(D3DD3, GetTexture, D3DD3 *This, DWORD stage, IDirect3DTexture2 **texture) ;
 STDDDTYPEDEF(D3DD3, SetTexture, D3DD3 *This, DWORD stage, IDirect3DTexture2 *texture) ;
 STDDDTYPEDEF(D3DD3, GetTextureStageState, D3DD3 *This, DWORD dwStage,D3DTEXTURESTAGESTATETYPE d3dTexStageStateType,LPDWORD lpdwState) ;
@@ -61,7 +61,7 @@ STDDDSTUB(D3DD3, GetStats, D3DD3 *This, D3DSTATS *stats) ;
 //STDDDSTUB(D3DD3, AddViewport, D3DD3 *This, D3DV3 *viewport) ;
 STDDDSTUB(D3DD3, DeleteViewport, D3DD3 *This, D3DV3 *viewport) ;
 STDDDSTUB(D3DD3, NextViewport, D3DD3 *This, D3DV3 *ref,
-		D3DV3 **viewport, DWORD flags) ;
+        D3DV3 **viewport, DWORD flags) ;
 //STDDDSTUB(D3DD3, EnumTextureFormats, D3DD3 *This, LPD3DENUMPIXELFORMATSCALLBACK lpD3DEnumPixelProc, LPVOID lpArg) ;
 //STDDDSTUB(D3DD3, BeginScene, D3DD3 *This) ;
 //STDDDSTUB(D3DD3, EndScene, D3DD3 *This) ;
@@ -87,16 +87,16 @@ STDDDSTUB(D3DD3, DrawIndexedPrimitive, D3DD3 *This, D3DPRIMITIVETYPE d3dptPrimit
 STDDDSTUB(D3DD3, SetClipStatus, D3DD3 *This, D3DCLIPSTATUS *clip_status) ;
 STDDDSTUB(D3DD3, GetClipStatus, D3DD3 *This, D3DCLIPSTATUS *clip_status) ;
 STDDDSTUB(D3DD3, DrawPrimitiveStrided, D3DD3 *This, D3DPRIMITIVETYPE primitive_type, DWORD fvf,
-		D3DDRAWPRIMITIVESTRIDEDDATA *strided_data, DWORD vertex_count, DWORD flags) ;
+        D3DDRAWPRIMITIVESTRIDEDDATA *strided_data, DWORD vertex_count, DWORD flags) ;
 STDDDSTUB(D3DD3, DrawIndexedPrimitiveStrided, D3DD3 *This, D3DPRIMITIVETYPE primitive_type, DWORD fvf,
-		D3DDRAWPRIMITIVESTRIDEDDATA *strided_data, DWORD vertex_count, WORD *indices, DWORD index_count,
-		DWORD flags) ;
+        D3DDRAWPRIMITIVESTRIDEDDATA *strided_data, DWORD vertex_count, WORD *indices, DWORD index_count,
+        DWORD flags) ;
 STDDDSTUB(D3DD3, DrawPrimitiveVB, D3DD3 *This, D3DPRIMITIVETYPE primitive_type, struct IDirect3DVertexBuffer *vb,
-		DWORD start_vertex, DWORD vertex_count, DWORD flags) ;
+        DWORD start_vertex, DWORD vertex_count, DWORD flags) ;
 STDDDSTUB(D3DD3, DrawIndexedPrimitiveVB, D3DD3 *This, D3DPRIMITIVETYPE primitive_type, struct IDirect3DVertexBuffer *vb,
-		WORD *indices, DWORD index_count, DWORD flags) ;
+        WORD *indices, DWORD index_count, DWORD flags) ;
 STDDDSTUB(D3DD3, ComputeSphereVisibility, D3DD3 *This, D3DVECTOR *centers, D3DVALUE *radii, DWORD sphere_count,
-		DWORD flags, DWORD *ret) ;
+        DWORD flags, DWORD *ret) ;
 STDDDSTUB(D3DD3, GetTexture, D3DD3 *This, DWORD stage, IDirect3DTexture2 **texture) ;
 //STDDDSTUB(D3DD3, SetTexture, D3DD3 *This, DWORD stage, IDirect3DTexture2 *texture) ;
 STDDDSTUB(D3DD3, GetTextureStageState, D3DD3 *This, DWORD dwStage,D3DTEXTURESTAGESTATETYPE d3dTexStageStateType,LPDWORD lpdwState) ;
@@ -111,159 +111,159 @@ ULONG STDMETHODCALLTYPE D3DD3Release(D3DD3* This)
 
 HRESULT STDMETHODCALLTYPE D3DD3GetCaps(D3DD3 *This, D3DDEVICEDESC *hal_desc, D3DDEVICEDESC *hel_desc)
 {
-	DPRINTF("trace");
-	return This->real->lpVtbl->GetCaps(This->real, hal_desc, hel_desc);
+    DPRINTF("trace");
+    return This->real->lpVtbl->GetCaps(This->real, hal_desc, hel_desc);
 }
 
 HRESULT STDMETHODCALLTYPE D3DD3AddViewport(D3DD3 *This, D3DV3 *viewport)
 {
-	DPRINTF("trace");
-	return This->real->lpVtbl->AddViewport(This->real, viewport->real);
+    DPRINTF("trace");
+    return This->real->lpVtbl->AddViewport(This->real, viewport->real);
 }
 
 HRESULT STDMETHODCALLTYPE D3DD3EnumTextureFormats(D3DD3 *This, LPD3DENUMPIXELFORMATSCALLBACK lpD3DEnumPixelProc, LPVOID lpArg)
 {
-	DPRINTF("trace");
-	return This->real->lpVtbl->EnumTextureFormats(This->real, lpD3DEnumPixelProc, lpArg);
+    DPRINTF("trace");
+    return This->real->lpVtbl->EnumTextureFormats(This->real, lpD3DEnumPixelProc, lpArg);
 }
 
 HRESULT STDMETHODCALLTYPE D3DD3BeginScene(D3DD3 *This)
 {
-	DPRINTF("trace");
-	return This->real->lpVtbl->BeginScene(This->real);
+    DPRINTF("trace");
+    return This->real->lpVtbl->BeginScene(This->real);
 }
 
 HRESULT STDMETHODCALLTYPE D3DD3EndScene(D3DD3 *This)
 {
-	DPRINTF("trace");
-	return This->real->lpVtbl->EndScene(This->real);
+    DPRINTF("trace");
+    return This->real->lpVtbl->EndScene(This->real);
 }
 
 HRESULT STDMETHODCALLTYPE D3DD3SetCurrentViewport(D3DD3 *This, D3DV3 *viewport)
 {
-	DPRINTF("trace");
-	return This->real->lpVtbl->SetCurrentViewport(This->real, viewport->real);
+    DPRINTF("trace");
+    return This->real->lpVtbl->SetCurrentViewport(This->real, viewport->real);
 }
 
 HRESULT STDMETHODCALLTYPE D3DD3SetRenderState(D3DD3 *This, D3DRENDERSTATETYPE dwRenderStateType, DWORD dwRenderState)
 {
-	PrintRenderstate(dwRenderStateType, dwRenderState);
+    PrintRenderstate(dwRenderStateType, dwRenderState);
 #if 0
-	if (dwRenderStateType == D3DRENDERSTATE_FOGENABLE)
-	{
-		dwRenderState = 0;
-	}
+    if (dwRenderStateType == D3DRENDERSTATE_FOGENABLE)
+    {
+        dwRenderState = 0;
+    }
 #endif
-	return This->real->lpVtbl->SetRenderState(This->real, dwRenderStateType, dwRenderState);
+    return This->real->lpVtbl->SetRenderState(This->real, dwRenderStateType, dwRenderState);
 }
 
 HRESULT STDMETHODCALLTYPE D3DD3SetLightState(D3DD3 *This, D3DLIGHTSTATETYPE dwLightStateType, DWORD dwLightState)
 {
-	DPRINTF("trace");
-	return This->real->lpVtbl->SetLightState(This->real, dwLightStateType, dwLightState);
+    DPRINTF("trace");
+    return This->real->lpVtbl->SetLightState(This->real, dwLightStateType, dwLightState);
 }
 
 HRESULT STDMETHODCALLTYPE D3DD3DrawPrimitive(D3DD3 *This, D3DPRIMITIVETYPE d3dptPrimitiveType, DWORD d3dvtVertexType,
-	LPVOID lpvVertices, DWORD dwVertexCount, DWORD dwFlags)
+    LPVOID lpvVertices, DWORD dwVertexCount, DWORD dwFlags)
 {
-	// flags can be
-	// D3DDP_WAIT               __MSABI_LONG(0x00000001)
-	// D3DDP_DONOTCLIP          __MSABI_LONG(0x00000004)
-	// D3DDP_DONOTUPDATEEXTENTS __MSABI_LONG(0x00000008)
-	// D3DDP_DONOTLIGHT         __MSABI_LONG(0x00000010)
+    // flags can be
+    // D3DDP_WAIT               __MSABI_LONG(0x00000001)
+    // D3DDP_DONOTCLIP          __MSABI_LONG(0x00000004)
+    // D3DDP_DONOTUPDATEEXTENTS __MSABI_LONG(0x00000008)
+    // D3DDP_DONOTLIGHT         __MSABI_LONG(0x00000010)
 
-	// D3DFVF
-	// all vertex types are 1c4, 2c4 / 3c4
-	// 1, 2 or 3 textures
-	// diffuse
-	// specular
-	// xyz rhw - something to do with GUIs??
-/*	DPRINTF
-	(
-		"primitiveType %x\n"
-		"vertexType %x\n"
-		"vertices %d\n"
-		"flags %x",
-		d3dptPrimitiveType,
-		d3dvtVertexType,
-		dwVertexCount,
-		dwFlags
-	);*/
-	return This->real->lpVtbl->DrawPrimitive
-	(
-		This->real,
-		d3dptPrimitiveType,
-		d3dvtVertexType,
-		lpvVertices,
-		dwVertexCount,
-		dwFlags
-	);
+    // D3DFVF
+    // all vertex types are 1c4, 2c4 / 3c4
+    // 1, 2 or 3 textures
+    // diffuse
+    // specular
+    // xyz rhw - something to do with GUIs??
+/*    DPRINTF
+    (
+        "primitiveType %x\n"
+        "vertexType %x\n"
+        "vertices %d\n"
+        "flags %x",
+        d3dptPrimitiveType,
+        d3dvtVertexType,
+        dwVertexCount,
+        dwFlags
+    );*/
+    return This->real->lpVtbl->DrawPrimitive
+    (
+        This->real,
+        d3dptPrimitiveType,
+        d3dvtVertexType,
+        lpvVertices,
+        dwVertexCount,
+        dwFlags
+    );
 }
 
 HRESULT STDMETHODCALLTYPE D3DD3SetTexture(D3DD3 *This, DWORD stage, IDirect3DTexture2 *texture)
 {
-	DPRINTF("trace");
-	return This->real->lpVtbl->SetTexture(This->real, stage, texture);
+    DPRINTF("trace");
+    return This->real->lpVtbl->SetTexture(This->real, stage, texture);
 }
 
 HRESULT STDMETHODCALLTYPE D3DD3SetTextureStageState(D3DD3 *This, DWORD dwStage, D3DTEXTURESTAGESTATETYPE d3dTexStageStateType,DWORD dwState)
 {
-	DPRINTF("trace");
-	return This->real->lpVtbl->SetTextureStageState(This->real, dwStage, d3dTexStageStateType, dwState);
+    DPRINTF("trace");
+    return This->real->lpVtbl->SetTextureStageState(This->real, dwStage, d3dTexStageStateType, dwState);
 }
 IDirect3DDevice3Vtbl d3dd3Vtbl =
 {
-	D3DD3QueryInterface,
-	D3DD3AddRef,
-	D3DD3Release,
-	D3DD3GetCaps,
-	D3DD3GetStats,
-	D3DD3AddViewport,
-	D3DD3DeleteViewport,
-	D3DD3NextViewport,
-	D3DD3EnumTextureFormats,
-	D3DD3BeginScene,
-	D3DD3EndScene,
-	D3DD3GetDirect3D,
-	D3DD3SetCurrentViewport,
-	D3DD3GetCurrentViewport,
-	D3DD3SetRenderTarget,
-	D3DD3GetRenderTarget,
-	D3DD3Begin,
-	D3DD3BeginIndexed,
-	D3DD3Vertex,
-	D3DD3Index,
-	D3DD3End,
-	D3DD3GetRenderState,
-	D3DD3SetRenderState,
-	D3DD3GetLightState,
-	D3DD3SetLightState,
-	D3DD3SetTransform,
-	D3DD3GetTransform,
-	D3DD3MultiplyTransform,
-	D3DD3DrawPrimitive,
-	D3DD3DrawIndexedPrimitive,
-	D3DD3SetClipStatus,
-	D3DD3GetClipStatus,
-	D3DD3DrawPrimitiveStrided,
-	D3DD3DrawIndexedPrimitiveStrided,
-	D3DD3DrawPrimitiveVB,
-	D3DD3DrawIndexedPrimitiveVB,
-	D3DD3ComputeSphereVisibility,
-	D3DD3GetTexture,
-	D3DD3SetTexture,
-	D3DD3GetTextureStageState,
-	D3DD3SetTextureStageState,
-	D3DD3ValidateDevice
+    D3DD3QueryInterface,
+    D3DD3AddRef,
+    D3DD3Release,
+    D3DD3GetCaps,
+    D3DD3GetStats,
+    D3DD3AddViewport,
+    D3DD3DeleteViewport,
+    D3DD3NextViewport,
+    D3DD3EnumTextureFormats,
+    D3DD3BeginScene,
+    D3DD3EndScene,
+    D3DD3GetDirect3D,
+    D3DD3SetCurrentViewport,
+    D3DD3GetCurrentViewport,
+    D3DD3SetRenderTarget,
+    D3DD3GetRenderTarget,
+    D3DD3Begin,
+    D3DD3BeginIndexed,
+    D3DD3Vertex,
+    D3DD3Index,
+    D3DD3End,
+    D3DD3GetRenderState,
+    D3DD3SetRenderState,
+    D3DD3GetLightState,
+    D3DD3SetLightState,
+    D3DD3SetTransform,
+    D3DD3GetTransform,
+    D3DD3MultiplyTransform,
+    D3DD3DrawPrimitive,
+    D3DD3DrawIndexedPrimitive,
+    D3DD3SetClipStatus,
+    D3DD3GetClipStatus,
+    D3DD3DrawPrimitiveStrided,
+    D3DD3DrawIndexedPrimitiveStrided,
+    D3DD3DrawPrimitiveVB,
+    D3DD3DrawIndexedPrimitiveVB,
+    D3DD3ComputeSphereVisibility,
+    D3DD3GetTexture,
+    D3DD3SetTexture,
+    D3DD3GetTextureStageState,
+    D3DD3SetTextureStageState,
+    D3DD3ValidateDevice
 };
 
 //Initialise ddraw structure
 void ID3DD3Init(IDirect3DDevice3** dd)
 {
-	DPRINTF("trace");
+    DPRINTF("trace");
 
     D3DD3* fake = malloc(sizeof(D3DD3));
-	fake->lpVtbl = &d3dd3Vtbl;
+    fake->lpVtbl = &d3dd3Vtbl;
     fake->real = *dd;
     *dd = fake;
 }

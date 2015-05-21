@@ -50,46 +50,46 @@ ULONG STDMETHODCALLTYPE DD2Release(DD2* dd)
 
 IDirectDraw2Vtbl dd2Vtbl =
 {
-	DD2QueryInterface,
-	DD2AddRef,
-	DD2Release,
-	DD2Compact,
-	DD2CreateClipper,
-	DD2CreatePalette,
-	DD2CreateSurface,
-	DD2DuplicateSurface,
-	DD2EnumDisplayModes,
-	DD2EnumSurfaces,
-	DD2FlipToGDISurface,
-	DD2GetCaps,
-	DD2GetDisplayMode,
-	DD2GetFourCCCodes,
-	DD2GetGDISurface,
-	DD2GetMonitorFrequency,
-	DD2GetScanLine,
-	DD2GetVerticalBlankStatus,
-	DD2Initialize,
-	DD2RestoreDisplayMode,
-	DD2SetCooperativeLevel,
-	DD2SetDisplayMode,
-	DD2WaitForVerticalBlank,
-	DD2GetAvailableVidMem
+    DD2QueryInterface,
+    DD2AddRef,
+    DD2Release,
+    DD2Compact,
+    DD2CreateClipper,
+    DD2CreatePalette,
+    DD2CreateSurface,
+    DD2DuplicateSurface,
+    DD2EnumDisplayModes,
+    DD2EnumSurfaces,
+    DD2FlipToGDISurface,
+    DD2GetCaps,
+    DD2GetDisplayMode,
+    DD2GetFourCCCodes,
+    DD2GetGDISurface,
+    DD2GetMonitorFrequency,
+    DD2GetScanLine,
+    DD2GetVerticalBlankStatus,
+    DD2Initialize,
+    DD2RestoreDisplayMode,
+    DD2SetCooperativeLevel,
+    DD2SetDisplayMode,
+    DD2WaitForVerticalBlank,
+    DD2GetAvailableVidMem
 };
 
 IDirectDraw2* IDD2Query(IUNK* unk)
 {
-	IDirectDraw2* real;
-	//get the real pointer
-	if(unk->real->lpVtbl->QueryInterface(unk->real, &IID_IDirectDraw2, &real) != DD_OK)
-	{
-		DPRINTF("query interface failed with %d");
-		ABORT();
-	}
+    IDirectDraw2* real;
+    //get the real pointer
+    if(unk->real->lpVtbl->QueryInterface(unk->real, &IID_IDirectDraw2, &real) != DD_OK)
+    {
+        DPRINTF("query interface failed with %d");
+        ABORT();
+    }
 
-	DPRINTF("trace");
+    DPRINTF("trace");
 
     DD2* fake = malloc(sizeof(DD2));
-	fake->lpVtbl = &dd2Vtbl;
+    fake->lpVtbl = &dd2Vtbl;
     fake->real = real;
     return fake;
 }

@@ -99,10 +99,10 @@ HRESULT STDMETHODCALLTYPE DD1CreateSurface(DD1* dd, DDSURFACEDESC *surface_desc,
     DPRINTF("trace");
     PrintSurfaceDesc(surface_desc);
     HRESULT rc = dd->real->lpVtbl->CreateSurface(dd->real, surface_desc, surface, outer);
-	if(rc != DD_OK)
-	{
-		ABORT();
-	}
+    if(rc != DD_OK)
+    {
+        ABORT();
+    }
 
     (*surface) = IDDS1Create(*surface);
     return rc;
@@ -111,37 +111,37 @@ HRESULT STDMETHODCALLTYPE DD1CreateSurface(DD1* dd, DDSURFACEDESC *surface_desc,
 // create vtables for the interfaces
 IDirectDrawVtbl dd1Vtbl =
 {
-	DD1QueryInterface,
-	DD1AddRef,
-	DD1Release,
-	DD1Compact,
-	DD1CreateClipper,
-	DD1CreatePalette,
-	DD1CreateSurface,
-	DD1DuplicateSurface,
-	DD1EnumDisplayModes,
-	DD1EnumSurfaces,
-	DD1FlipToGDISurface,
-	DD1GetCaps,
-	DD1GetDisplayMode,
-	DD1GetFourCCCodes,
-	DD1GetGDISurface,
-	DD1GetMonitorFrequency,
-	DD1GetScanLine,
-	DD1GetVerticalBlankStatus,
-	DD1Initialize,
-	DD1RestoreDisplayMode,
-	DD1SetCooperativeLevel,
-	DD1SetDisplayMode,
-	DD1WaitForVerticalBlank
+    DD1QueryInterface,
+    DD1AddRef,
+    DD1Release,
+    DD1Compact,
+    DD1CreateClipper,
+    DD1CreatePalette,
+    DD1CreateSurface,
+    DD1DuplicateSurface,
+    DD1EnumDisplayModes,
+    DD1EnumSurfaces,
+    DD1FlipToGDISurface,
+    DD1GetCaps,
+    DD1GetDisplayMode,
+    DD1GetFourCCCodes,
+    DD1GetGDISurface,
+    DD1GetMonitorFrequency,
+    DD1GetScanLine,
+    DD1GetVerticalBlankStatus,
+    DD1Initialize,
+    DD1RestoreDisplayMode,
+    DD1SetCooperativeLevel,
+    DD1SetDisplayMode,
+    DD1WaitForVerticalBlank
 };
 
 IDirectDraw* IDDCreate(IDirectDraw* real)
 {
-	DPRINTF("trace");
+    DPRINTF("trace");
 
     DD1* fake = malloc(sizeof(DD1));
-	fake->lpVtbl = &dd1Vtbl;
+    fake->lpVtbl = &dd1Vtbl;
     fake->real = real;
     return fake;
 }

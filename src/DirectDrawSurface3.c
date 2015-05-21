@@ -101,70 +101,70 @@ STDDDSTUB(DDS3, SetSurfaceDesc, DDS3 *This, DDSURFACEDESC *surface_desc, DWORD f
 
 IDirectDrawSurface3Vtbl dds3Vtbl =
 {
-	//unk
-	DDS3QueryInterface,
-	DDS3AddRef,
-	DDS3Release,
-	//dds4
-	DDS3AddAttachedSurface,
-	DDS3AddOverlayDirtyRect,
-	DDS3Blt,
-	DDS3BltBatch,
-	DDS3BltFast,
-	DDS3DeleteAttachedSurface,
-	DDS3EnumAttachedSurfaces,
-	DDS3EnumOverlayZOrders,
-	DDS3Flip,
-	DDS3GetAttachedSurface,
-	DDS3GetBltStatus,
-	DDS3GetCaps,
-	DDS3GetClipper,
-	DDS3GetColorKey,
-	DDS3GetDC,
-	DDS3GetFlipStatus,
-	DDS3GetOverlayPosition,
-	DDS3GetPalette,
-	DDS3GetPixelFormat,
-	DDS3GetSurfaceDesc,
-	DDS3Initialize,
-	DDS3IsLost,
-	DDS3Lock,
-	DDS3ReleaseDC,
-	DDS3Restore,
-	DDS3SetClipper,
-	DDS3SetColorKey,
-	DDS3SetOverlayPosition,
-	DDS3SetPalette,
-	DDS3Unlock,
-	DDS3UpdateOverlay,
-	DDS3UpdateOverlayDisplay,
-	DDS3UpdateOverlayZOrder
+    //unk
+    DDS3QueryInterface,
+    DDS3AddRef,
+    DDS3Release,
+    //dds4
+    DDS3AddAttachedSurface,
+    DDS3AddOverlayDirtyRect,
+    DDS3Blt,
+    DDS3BltBatch,
+    DDS3BltFast,
+    DDS3DeleteAttachedSurface,
+    DDS3EnumAttachedSurfaces,
+    DDS3EnumOverlayZOrders,
+    DDS3Flip,
+    DDS3GetAttachedSurface,
+    DDS3GetBltStatus,
+    DDS3GetCaps,
+    DDS3GetClipper,
+    DDS3GetColorKey,
+    DDS3GetDC,
+    DDS3GetFlipStatus,
+    DDS3GetOverlayPosition,
+    DDS3GetPalette,
+    DDS3GetPixelFormat,
+    DDS3GetSurfaceDesc,
+    DDS3Initialize,
+    DDS3IsLost,
+    DDS3Lock,
+    DDS3ReleaseDC,
+    DDS3Restore,
+    DDS3SetClipper,
+    DDS3SetColorKey,
+    DDS3SetOverlayPosition,
+    DDS3SetPalette,
+    DDS3Unlock,
+    DDS3UpdateOverlay,
+    DDS3UpdateOverlayDisplay,
+    DDS3UpdateOverlayZOrder
 };
 
 
 IDirectDrawSurface3* IDDS3Create(IDirectDrawSurface3* real)
 {
     DDS3* fake = malloc(sizeof(DDS3));
-	fake->lpVtbl = &dds3Vtbl;
+    fake->lpVtbl = &dds3Vtbl;
     fake->real = real;
-	DPRINTF("trace %x", fake);
+    DPRINTF("trace %x", fake);
     return fake;
 }
 
 IDirectDrawSurface3* IDDS3Query(IUNK* unk)
 {
-	IDirectDrawSurface3* real;
-	//get the real pointer
-	if(unk->real->lpVtbl->QueryInterface(unk->real, &IID_IDirectDrawSurface3, &real) != DD_OK)
-	{
-		DPRINTF("query interface failed with %d",DD_OK);
-		ABORT();
-	}
+    IDirectDrawSurface3* real;
+    //get the real pointer
+    if(unk->real->lpVtbl->QueryInterface(unk->real, &IID_IDirectDrawSurface3, &real) != DD_OK)
+    {
+        DPRINTF("query interface failed with %d",DD_OK);
+        ABORT();
+    }
 
     DDS3* fake = malloc(sizeof(DDS3));
-	fake->lpVtbl = &dds3Vtbl;
+    fake->lpVtbl = &dds3Vtbl;
     fake->real = real;
-	DPRINTF("trace %x", fake);
+    DPRINTF("trace %x", fake);
     return fake;
 }
 

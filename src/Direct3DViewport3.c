@@ -48,57 +48,57 @@ STDDDSTUB(D3DV3, Clear2, D3DV3 *This, DWORD count, D3DRECT *rects, DWORD flags, 
 
 ULONG STDMETHODCALLTYPE D3DV3Release(D3DV3 *This)
 {
-	DPRINTF("trace");
-	return IUNKRelease(This);
+    DPRINTF("trace");
+    return IUNKRelease(This);
 }
 
 HRESULT STDMETHODCALLTYPE D3DV3SetBackground(D3DV3 *This, D3DMATERIALHANDLE hMat)
 {
-	DPRINTF("trace");
-	return This->real->lpVtbl->SetBackground(This->real, hMat);
+    DPRINTF("trace");
+    return This->real->lpVtbl->SetBackground(This->real, hMat);
 }
 
 HRESULT STDMETHODCALLTYPE D3DV3SetViewport2(D3DV3 *This, D3DVIEWPORT2 *data)
 {
-	DPRINTF("minZ %f\nmaxZ %f", data->dvMinZ, data->dvMaxZ);
-	return This->real->lpVtbl->SetViewport2(This->real, data);
+    DPRINTF("minZ %f\nmaxZ %f", data->dvMinZ, data->dvMaxZ);
+    return This->real->lpVtbl->SetViewport2(This->real, data);
 }
 
 
 
 IDirect3DViewport3Vtbl d3dv3Vtbl =
 {
-	D3DV3QueryInterface,
-	D3DV3AddRef,
-	D3DV3Release,
-	D3DV3Initialize,
-	D3DV3GetViewport,
-	D3DV3SetViewport,
-	D3DV3TransformVertices,
-	D3DV3LightElements,
-	D3DV3SetBackground,
-	D3DV3GetBackground,
-	D3DV3SetBackgroundDepth,
-	D3DV3GetBackgroundDepth,
-	D3DV3Clear,
-	D3DV3AddLight,
-	D3DV3DeleteLight,
-	D3DV3NextLight,
-	D3DV3GetViewport2,
-	D3DV3SetViewport2,
-	D3DV3SetBackgroundDepth2,
-	D3DV3GetBackgroundDepth2,
-	D3DV3Clear2
+    D3DV3QueryInterface,
+    D3DV3AddRef,
+    D3DV3Release,
+    D3DV3Initialize,
+    D3DV3GetViewport,
+    D3DV3SetViewport,
+    D3DV3TransformVertices,
+    D3DV3LightElements,
+    D3DV3SetBackground,
+    D3DV3GetBackground,
+    D3DV3SetBackgroundDepth,
+    D3DV3GetBackgroundDepth,
+    D3DV3Clear,
+    D3DV3AddLight,
+    D3DV3DeleteLight,
+    D3DV3NextLight,
+    D3DV3GetViewport2,
+    D3DV3SetViewport2,
+    D3DV3SetBackgroundDepth2,
+    D3DV3GetBackgroundDepth2,
+    D3DV3Clear2
 };
 
 //Initialise ddraw structure
 void ID3DV3Init(IDirect3DViewport3** dd)
 {
-	DPRINTF("trace");
+    DPRINTF("trace");
 
-	//TODO currently not freed
+    //TODO currently not freed
     D3DV3* fake = malloc(sizeof(D3DV3));
-	fake->lpVtbl = &d3dv3Vtbl;
+    fake->lpVtbl = &d3dv3Vtbl;
     fake->real = *dd;
     *dd = fake;
 }

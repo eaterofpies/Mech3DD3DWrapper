@@ -102,10 +102,10 @@ HRESULT STDMETHODCALLTYPE DD4CreateSurface(DD4* dd, DDSURFACEDESC2 *surface_desc
     DPRINTF("pixel format flags %x", surface_desc->ddpfPixelFormat.dwFlags);
     HRESULT rc =  dd->real->lpVtbl->CreateSurface(dd->real, surface_desc, surface, outer);
 
-	if(rc != DD_OK)
-	{
-		ABORT();
-	}
+    if(rc != DD_OK)
+    {
+        ABORT();
+    }
 
     (*surface) = IDDS4Create(*surface);
     return rc;
@@ -171,50 +171,50 @@ HRESULT STDMETHODCALLTYPE DD4GetAvailableVidMem(DD4* dd, DDSCAPS2 *caps, DWORD *
 
 IDirectDraw4Vtbl dd4Vtbl =
 {
-	DD4QueryInterface,
-	DD4AddRef,
-	DD4Release,
-	DD4Compact,
-	DD4CreateClipper,
-	DD4CreatePalette,
-	DD4CreateSurface,
-	DD4DuplicateSurface,
-	DD4EnumDisplayModes,
-	DD4EnumSurfaces,
-	DD4FlipToGDISurface,
-	DD4GetCaps,
-	DD4GetDisplayMode,
-	DD4GetFourCCCodes,
-	DD4GetGDISurface,
-	DD4GetMonitorFrequency,
-	DD4GetScanLine,
-	DD4GetVerticalBlankStatus,
-	DD4Initialize,
-	DD4RestoreDisplayMode,
-	DD4SetCooperativeLevel,
-	DD4SetDisplayMode,
-	DD4WaitForVerticalBlank,
-	DD4GetAvailableVidMem,
-	DD4GetSurfaceFromDC,
-	DD4RestoreAllSurfaces,
-	DD4TestCooperativeLevel,
-	DD4GetDeviceIdentifier
+    DD4QueryInterface,
+    DD4AddRef,
+    DD4Release,
+    DD4Compact,
+    DD4CreateClipper,
+    DD4CreatePalette,
+    DD4CreateSurface,
+    DD4DuplicateSurface,
+    DD4EnumDisplayModes,
+    DD4EnumSurfaces,
+    DD4FlipToGDISurface,
+    DD4GetCaps,
+    DD4GetDisplayMode,
+    DD4GetFourCCCodes,
+    DD4GetGDISurface,
+    DD4GetMonitorFrequency,
+    DD4GetScanLine,
+    DD4GetVerticalBlankStatus,
+    DD4Initialize,
+    DD4RestoreDisplayMode,
+    DD4SetCooperativeLevel,
+    DD4SetDisplayMode,
+    DD4WaitForVerticalBlank,
+    DD4GetAvailableVidMem,
+    DD4GetSurfaceFromDC,
+    DD4RestoreAllSurfaces,
+    DD4TestCooperativeLevel,
+    DD4GetDeviceIdentifier
 };
 
 IDirectDraw4* IDD4Query(IUNK* unk)
 {
-	IDirectDraw4* real;
-	//get the real pointer
-	if(unk->real->lpVtbl->QueryInterface(unk->real, &IID_IDirectDraw4, &real) != DD_OK)
-	{
-		DPRINTF("query interface failed with %d",DD_OK);
-		ABORT();
-	}
+    IDirectDraw4* real;
+    //get the real pointer
+    if(unk->real->lpVtbl->QueryInterface(unk->real, &IID_IDirectDraw4, &real) != DD_OK)
+    {
+        DPRINTF("query interface failed with %d",DD_OK);
+        ABORT();
+    }
 
-	DPRINTF("trace");
+    DPRINTF("trace");
 
     DD4* fakeDD4 = malloc(sizeof(DD4));
-	fakeDD4->lpVtbl = &dd4Vtbl;
+    fakeDD4->lpVtbl = &dd4Vtbl;
     fakeDD4->real = real;
     return fakeDD4;
 }

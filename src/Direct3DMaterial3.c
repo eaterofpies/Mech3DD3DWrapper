@@ -27,26 +27,26 @@ STDDDSTUB(D3DM3, GetMaterial, D3DM3 *This, D3DMATERIAL *data) ;
 
 ULONG STDMETHODCALLTYPE D3DM3Release(D3DM3 *This)
 {
-	DPRINTF("trace");
-	return IUNKRelease(This);
+    DPRINTF("trace");
+    return IUNKRelease(This);
 }
 
 /*** IDirect3DMaterial3 methods ***/
 HRESULT STDMETHODCALLTYPE D3DM3SetMaterial(D3DM3* This, D3DMATERIAL *data)
 {
-	DPRINTF("trace");
-	return This->real->lpVtbl->SetMaterial(This->real, data);
+    DPRINTF("trace");
+    return This->real->lpVtbl->SetMaterial(This->real, data);
 }
 
 HRESULT STDMETHODCALLTYPE D3DM3GetHandle(D3DM3* This, D3DD3 *device, D3DMATERIALHANDLE *handle)
 {
-	DPRINTF("trace");
-	return This->real->lpVtbl->GetHandle(This->real, device->real, handle);
+    DPRINTF("trace");
+    return This->real->lpVtbl->GetHandle(This->real, device->real, handle);
 }
 
 IDirect3D3Vtbl d3dm3Vtbl =
 {
-	D3DM3QueryInterface,
+    D3DM3QueryInterface,
     D3DM3AddRef,
     D3DM3Release,
     D3DM3SetMaterial,
@@ -57,11 +57,11 @@ IDirect3D3Vtbl d3dm3Vtbl =
 //Initialise ddraw structure
 void ID3DM3Init(IDirect3DMaterial3** dd)
 {
-	DPRINTF("trace");
+    DPRINTF("trace");
 
-	//TODO currently not freed
+    //TODO currently not freed
     D3DM3* fake = malloc(sizeof(D3DM3));
-	fake->lpVtbl = &d3dm3Vtbl;
+    fake->lpVtbl = &d3dm3Vtbl;
     fake->real = *dd;
 
     *dd = fake;

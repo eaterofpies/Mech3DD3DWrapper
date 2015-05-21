@@ -94,65 +94,65 @@ STDDDSTUB(DDS1, UpdateOverlayZOrder, DDS1 *This, DWORD flags, DDS1 *reference_su
 
 HRESULT STDMETHODCALLTYPE DDS1QueryInterface(DDS1* This, REFIID riid, void** ppvObject)
 {
-	DPRINTF("trace %x", This);
+    DPRINTF("trace %x", This);
     return IUNKQueryInterface(This, riid, ppvObject);
 }
 
 ULONG STDMETHODCALLTYPE DDS1Release(DDS1* This)
 {
-	DPRINTF("trace %x", This);
+    DPRINTF("trace %x", This);
     return IUNKRelease(This);
 }
 
 IDirectDrawSurfaceVtbl ddsVtbl =
 {
-	//unk
-	DDS1QueryInterface,
-	DDS1AddRef,
-	DDS1Release,
-	//dds4
-	DDS1AddAttachedSurface,
-	DDS1AddOverlayDirtyRect,
-	DDS1Blt,
-	DDS1BltBatch,
-	DDS1BltFast,
-	DDS1DeleteAttachedSurface,
-	DDS1EnumAttachedSurfaces,
-	DDS1EnumOverlayZOrders,
-	DDS1Flip,
-	DDS1GetAttachedSurface,
-	DDS1GetBltStatus,
-	DDS1GetCaps,
-	DDS1GetClipper,
-	DDS1GetColorKey,
-	DDS1GetDC,
-	DDS1GetFlipStatus,
-	DDS1GetOverlayPosition,
-	DDS1GetPalette,
-	DDS1GetPixelFormat,
-	DDS1GetSurfaceDesc,
-	DDS1Initialize,
-	DDS1IsLost,
-	DDS1Lock,
-	DDS1ReleaseDC,
-	DDS1Restore,
-	DDS1SetClipper,
-	DDS1SetColorKey,
-	DDS1SetOverlayPosition,
-	DDS1SetPalette,
-	DDS1Unlock,
-	DDS1UpdateOverlay,
-	DDS1UpdateOverlayDisplay,
-	DDS1UpdateOverlayZOrder
+    //unk
+    DDS1QueryInterface,
+    DDS1AddRef,
+    DDS1Release,
+    //dds4
+    DDS1AddAttachedSurface,
+    DDS1AddOverlayDirtyRect,
+    DDS1Blt,
+    DDS1BltBatch,
+    DDS1BltFast,
+    DDS1DeleteAttachedSurface,
+    DDS1EnumAttachedSurfaces,
+    DDS1EnumOverlayZOrders,
+    DDS1Flip,
+    DDS1GetAttachedSurface,
+    DDS1GetBltStatus,
+    DDS1GetCaps,
+    DDS1GetClipper,
+    DDS1GetColorKey,
+    DDS1GetDC,
+    DDS1GetFlipStatus,
+    DDS1GetOverlayPosition,
+    DDS1GetPalette,
+    DDS1GetPixelFormat,
+    DDS1GetSurfaceDesc,
+    DDS1Initialize,
+    DDS1IsLost,
+    DDS1Lock,
+    DDS1ReleaseDC,
+    DDS1Restore,
+    DDS1SetClipper,
+    DDS1SetColorKey,
+    DDS1SetOverlayPosition,
+    DDS1SetPalette,
+    DDS1Unlock,
+    DDS1UpdateOverlay,
+    DDS1UpdateOverlayDisplay,
+    DDS1UpdateOverlayZOrder
 };
 
 
 IDirectDrawSurface* IDDS1Create(IDirectDrawSurface* real)
 {
     DDS1* fake = malloc(sizeof(DDS1));
-	fake->lpVtbl = &ddsVtbl;
+    fake->lpVtbl = &ddsVtbl;
     fake->real = real;
-	DPRINTF("trace %x", fake);
+    DPRINTF("trace %x", fake);
     return fake;
 }
 

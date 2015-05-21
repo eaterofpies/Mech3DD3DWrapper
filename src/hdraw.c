@@ -86,13 +86,13 @@ HRESULT WINAPI DirectDrawCreate(GUID *driver_guid, IDirectDraw **ddraw, IUnknown
     }
     LPDIRECTDRAW lpdd = *ddraw;
 
-	if(logfd == 0)
-	{
-		logfd = fopen("hdraw.log","wb");
-		setbuf(logfd, NULL);
-	}
+    if(logfd == 0)
+    {
+        logfd = fopen("hdraw.log","wb");
+        setbuf(logfd, NULL);
+    }
 
-	//swap the real ddraw object for a proxy
+    //swap the real ddraw object for a proxy
     (*ddraw) = IDDCreate(lpdd);
 
     DPRINTF("%s", "Hooks installed\n");

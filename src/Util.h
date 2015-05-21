@@ -9,9 +9,9 @@ extern FILE* logfd;
 #define DPRINTF(args...) \
 do \
 { \
-	fprintf(logfd, "------------\n%s:%s:%d\n",__func__,__FILE__,__LINE__); \
-	fprintf(logfd, args); \
-	fprintf(logfd, "\n------------\n"); \
+    fprintf(logfd, "------------\n%s:%s:%d\n",__func__,__FILE__,__LINE__); \
+    fprintf(logfd, args); \
+    fprintf(logfd, "\n------------\n"); \
 } while(0)
 
 //Macros for generating typedefs for directdraw apis
